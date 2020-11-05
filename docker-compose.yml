@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: con_webserver_service_course
+    # lokasi source code
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    # path untuk source di dalam docker
+    volumes:
+      - ./:/var/www
+    image: webserver_service_course:1.0
+    ports:
+      - "8000:8000"
+
+  app:
+    container_name: con_service_course
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    image: app_service_course:1.0
+    volumes:
+      - ./:/var/www
+  
